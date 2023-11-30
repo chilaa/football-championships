@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Championships{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="{{ path('championship.create') }}" class="nav-link" aria-current="page">Add</a></li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="example-wrapper col-12">
+        {% for championship in championships %}
+            <ul class="list-group list-group-horizontal col-12">
+                <li class="list-group-item">
+                    <img src="{{ asset('uploads/images/' ~ championship.logo) }}" height="70px" alt="">
+                </li>
+                <li class="list-group-item">
+                    <span>{{ championship.name }}</span>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}
