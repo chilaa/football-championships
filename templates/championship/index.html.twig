@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Championship index{% endblock %}
+{% block title %}Championships{% endblock %}
 
 {% block body %}
-    <h1>Championship index</h1>
+    <h1>Championships</h1>
 
     <table class="table">
         <thead>
@@ -11,6 +11,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Logo</th>
+            <th>Teams</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -21,6 +22,15 @@
                 <td>{{ championship.Name }}</td>
                 <td>
                     <img src="{{ asset('uploads/images/' ~ championship.logo) }}" height="70px" alt="">
+                </td>
+                <td>
+                    <ul>
+                        {% for team in championship.teams %}
+                            <li>
+                                {{ team.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </td>
                 <td>
                     <a href="{{ path('app_championship_show', {'id': championship.id}) }}">show</a>
