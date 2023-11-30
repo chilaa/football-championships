@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Championship;
 use App\Entity\Player;
 use App\Entity\Team;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -10,28 +9,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TeamType extends AbstractType
+class PlayerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('Name')
-            ->add('Championship', EntityType::class, [
-                'class' => Championship::class,
+            ->add('Surname')
+            ->add('Age')
+            ->add('Team', EntityType::class, [
+                'class' => Team::class,
                 'choice_label' => 'name',
-                'multiple' => true,
-            ])
-            ->add('Players', EntityType::class, [
-                'class' => Player::class,
-                'choice_label' => 'name',
-                'multiple' => true,
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Team::class,
+            'data_class' => Player::class,
         ]);
     }
 }

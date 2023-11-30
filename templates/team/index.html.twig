@@ -7,12 +7,13 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Championships</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Championships</th>
+            <th>Players</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for team in teams %}
@@ -29,8 +30,17 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
-                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+                    <ul>
+                        {% for player in team.players %}
+                            <li>
+                                {{ player.name ~ ' ' ~ player.surname }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
+                    <a class="btn btn-secondary" href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_team_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_team_new') }}">Create new</a>
 {% endblock %}

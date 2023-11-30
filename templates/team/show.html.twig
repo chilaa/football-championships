@@ -27,12 +27,24 @@
                 </ul>
             </td>
         </tr>
+        <tr>
+            <th>Players</th>
+            <td>
+                <ul>
+                    {% for player in team.players %}
+                        <li>
+                            {{ player.name ~ ' ' ~ player.surname }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_team_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('app_team_index') }}">back to list</a>
 
-    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
 
     {{ include('team/_delete_form.html.twig') }}
 {% endblock %}

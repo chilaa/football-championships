@@ -33,7 +33,11 @@ class ChampionshipType extends AbstractType
                     ])
                 ]
             ])
-            ->add('save', SubmitType::class, ['label' => 'Save']);
+            ->add('Teams', EntityType::class, [
+                'class' => Team::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
