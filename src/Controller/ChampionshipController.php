@@ -79,10 +79,6 @@ class ChampionshipController extends AbstractController
                 $championship->setLogo($fileName);
             }
 
-//            if ($form->get('teams')) {
-//                dump($form->get('teams')->getData());
-//            }
-
             $entityManager->flush();
 
             return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);

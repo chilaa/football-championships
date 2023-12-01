@@ -19,4 +19,10 @@ class LoginController extends AbstractController
             'error' => $error
         ]);
     }
+
+    #[Route('/', name: 'app_home')]
+    public function home()
+    {
+        return $this->redirectToRoute('app_championship_index');
+    }
 }
