@@ -27,7 +27,7 @@ class ChampionshipController extends AbstractController
     }
 
     #[Route('/new', name: 'app_championship_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, ImageUploader $imageUploader ): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, ImageUploader $imageUploader): Response
     {
         $championship = new Championship();
         $form = $this->createForm(ChampionshipType::class, $championship);
@@ -97,10 +97,9 @@ class ChampionshipController extends AbstractController
     #[Route('/{id}', name: 'app_championship_delete', methods: ['POST'])]
     public function delete(Request $request, Championship $championship, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $championship->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($championship);
-            $entityManager->flush();
-        }
+        $this->denyAccessUnlessGranted('USER_ADMIN', null, "You don't have admin role to perform deletion.");
+        $entityManager->remove($championship);
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_championship_index', [], Response::HTTP_SEE_OTHER);
     }

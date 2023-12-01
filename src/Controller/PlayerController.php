@@ -71,10 +71,9 @@ class PlayerController extends AbstractController
     #[Route('/{id}', name: 'app_player_delete', methods: ['POST'])]
     public function delete(Request $request, Player $player, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$player->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($player);
-            $entityManager->flush();
-        }
+        $this->denyAccessUnlessGranted('USER_ADMIN', null, "You don't have admin role to perform deletion.");
+        $entityManager->remove($player);
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_player_index', [], Response::HTTP_SEE_OTHER);
     }

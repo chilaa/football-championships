@@ -71,10 +71,9 @@ class TeamController extends AbstractController
     #[Route('/{id}', name: 'app_team_delete', methods: ['POST'])]
     public function delete(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$team->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($team);
-            $entityManager->flush();
-        }
+        $this->denyAccessUnlessGranted('USER_ADMIN', null, "You don't have admin role to perform deletion.");
+        $entityManager->remove($team);
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
     }
