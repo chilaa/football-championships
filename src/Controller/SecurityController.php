@@ -12,4 +12,11 @@ class SecurityController extends AbstractController
         // controller can be blank: it will never be called!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
+
+//    #[Route('/make-admin', 'app_make_admin', methods: ['POST'])]
+//    public function makeAdmin()
+//    {
+//
+//
+//    }
 }

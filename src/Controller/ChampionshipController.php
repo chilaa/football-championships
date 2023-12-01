@@ -97,7 +97,7 @@ class ChampionshipController extends AbstractController
     #[Route('/{id}', name: 'app_championship_delete', methods: ['POST'])]
     public function delete(Request $request, Championship $championship, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted('USER_ADMIN', null, "You don't have admin role to perform deletion.");
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, "You don't have admin role to perform deletion.");
         $entityManager->remove($championship);
         $entityManager->flush();
 
