@@ -20,6 +20,7 @@ class PlayerType extends AbstractType
             ->add('Team', EntityType::class, [
                 'class' => Team::class,
                 'choice_label' => 'name',
+                'required' => false
             ]);
     }
 

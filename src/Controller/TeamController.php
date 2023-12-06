@@ -72,6 +72,12 @@ class TeamController extends AbstractController
     public function delete(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, "You don't have admin role to perform deletion.");
+        // Remove or update associated players before removing the team
+        foreach ($team->getPlayers() as $player) {
+            $player->setTeam(null);
+            $entityManager->persist($player);
+        }
+
         $entityManager->remove($team);
         $entityManager->flush();
 

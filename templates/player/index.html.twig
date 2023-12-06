@@ -7,14 +7,14 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Age</th>
-                <th>Team</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Team</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for player in players %}
@@ -23,7 +23,7 @@
                 <td>{{ player.Name }}</td>
                 <td>{{ player.Surname }}</td>
                 <td>{{ player.Age }}</td>
-                <td>{{ player.team.name }}</td>
+                <td>{{ player.team ? player.team.name : '' }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ path('app_player_show', {'id': player.id}) }}">show</a>
                     <a class="btn btn-secondary" href="{{ path('app_player_edit', {'id': player.id}) }}">edit</a>

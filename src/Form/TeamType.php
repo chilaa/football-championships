@@ -20,11 +20,7 @@ class TeamType extends AbstractType
                 'class' => Championship::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-            ])
-            ->add('Players', EntityType::class, [
-                'class' => Player::class,
-                'choice_label' => 'name',
-                'multiple' => true,
+                'required' => false
             ]);
     }
 
