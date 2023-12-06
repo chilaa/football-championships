@@ -1,11 +1,8 @@
 Project is on symfony, 6.3
-Requires php 8.1
+Requires docker and docker compose
 ### SETTING UP
-* Set up database credentials in .env
-* Import `dump.sql` or run commands:
-  * `php bin/console doctrine:database:create`
-  * `php bin/console doctrine:migrations:migrate`
-
-### Running project
-* run dev server using Symfony console command: `symfony server:start`
-* Or run php dev server from `public` directory: `php -S localhost:8888`
+* Run `make up`: it will download and run necessary containers
+  * It needs port 80 to be free.
+### Usage
+* To get in container run `make shell`
+* Access on [football.docker.localhost](http://football.docker.localhost/).
